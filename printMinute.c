@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-const int minute = 5;
+const int minute = 17;
 const char * sourceFile = "printMinute.c";
 const char * tempSourceFile = "temp";
 
@@ -18,7 +18,7 @@ void read_file_line_by_line(int newMinute) {
     fp = fopen(sourceFile, "r");
     writeFp = fopen(tempSourceFile, "w");
     if (fp == NULL)
-        exit(EXIT_FAILURE);
+        exit(2);
 
     int index = 0;
     while ((read = getline(&line, &len, fp)) != -1) {
@@ -33,9 +33,11 @@ void read_file_line_by_line(int newMinute) {
         }
         index++;
     }
+    if (line)
+        free(line);
     fclose(fp);
     fclose(writeFp);
-    //rename(tempSourceFile, sourceFile);
+    rename(tempSourceFile, sourceFile);
 }
 
 int main(char* argv) {
@@ -44,7 +46,7 @@ int main(char* argv) {
     int newMinute = tm_struct->tm_min;
     if (minute != newMinute) {
         read_file_line_by_line(newMinute);
-        system("gcc printMinute.c");
+        system("make build");
         exit(1);
     }
     printf("%d\n", minute);

@@ -2,8 +2,10 @@
 
 while :
 do
-    ./a.out
-    [ $? -eq 1 ] && ./a.out
+    ./printMinute.o
+    if [ $? -eq 1 ]; then
+        ./printMinute.o
+    fi
 
     echo "Sleeping for 10 seconds."
     sleep 10
