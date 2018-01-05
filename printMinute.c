@@ -23,17 +23,19 @@ void read_file_line_by_line(int newMinute) {
     int index = 0;
     while ((read = getline(&line, &len, fp)) != -1) {
         if (index == 6) {
-            printf("Retrieved line of length %zu :\n", read);
-            printf("%s", line);
-            fprintf(writeFp, "const int minute = %d;\n", newMinute);
+            char buf[5];
+            sprintf(buf, "%d", newMinute);
+            fputs("const int minute = ", writeFp);
+            fputs(buf, writeFp);
+            fputs(";\n", writeFp);
         } else {
-            fprintf(writeFp, line);
+            fputs(line, writeFp);
         }
         index++;
     }
     fclose(fp);
     fclose(writeFp);
-    rename(tempSourceFile, sourceFile);
+    //rename(tempSourceFile, sourceFile);
 }
 
 int main(char* argv) {
