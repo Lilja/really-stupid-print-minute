@@ -10,6 +10,7 @@ If not, it will:
 * Open a new file called `temp`
 * Write all contets and the newly injected file to `temp`
 * Rename(move) `temp` to `printMinute.c`
-* exit with return code 1 to tell bootstraper that is has changed
+* Compile itself with make(make -s build)
+* exit with return code 1 to tell bootstraper that program has changed
 
-There after, the bootstraper script will re-run the program
+Then after that, the bootstraper script will re-run the program and the current minute will be displayed again.
