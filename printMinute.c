@@ -15,8 +15,8 @@ void read_file_line_by_line(int newMinute) {
     size_t len = 0;
     ssize_t read;
 
-    fp = fopen("printMinute.c", "r");
-    fp = fopen("temp.c", "w");
+    fp = fopen(sourceFile, "r");
+    writeFp = fopen(tempSourceFile, "w");
     if (fp == NULL)
         exit(EXIT_FAILURE);
 
