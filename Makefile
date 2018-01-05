@@ -1,7 +1,7 @@
 
 
 build:
-	gcc print_minute.c -o print_minute.o
+	gcc print_minute.c -Wall -o print_minute.o
 
 clean:
 	rm print_minute.o

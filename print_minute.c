@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-const int minute = 36;
+const int minute = 55;
 const char * sourceFile = "print_minute.c";
 const char * tempSourceFile = "temp";
 const char * command = "make -s build";
@@ -41,7 +41,7 @@ void read_file_line_by_line(int newMinute) {
     rename(tempSourceFile, sourceFile);
 }
 
-int main(char* argv) {
+int main(int argc, char * argv[]) {
     time_t foo = time(NULL);
     struct tm *tm_struct = localtime(&foo);
     int newMinute = tm_struct->tm_min;
