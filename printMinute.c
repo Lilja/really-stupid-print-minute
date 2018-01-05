@@ -22,10 +22,10 @@ void read_file_line_by_line(int newMinute) {
 
     int index = 0;
     while ((read = getline(&line, &len, fp)) != -1) {
-        if (index == 5) {
+        if (index == 6) {
             printf("Retrieved line of length %zu :\n", read);
             printf("%s", line);
-            fprintf(writeFp, "const int minute = %d\n", newMinute);
+            fprintf(writeFp, "const int minute = %d;\n", newMinute);
         } else {
             fprintf(writeFp, line);
         }
@@ -33,7 +33,7 @@ void read_file_line_by_line(int newMinute) {
     }
     fclose(fp);
     fclose(writeFp);
-    rename(sourceFile, tempSourceFile);
+    rename(tempSourceFile, sourceFile);
 }
 
 int main(char* argv) {
@@ -42,7 +42,7 @@ int main(char* argv) {
     int newMinute = tm_struct->tm_min;
     if (minute != newMinute) {
         read_file_line_by_line(newMinute);
-        system("make build");
+        system("gcc printMinute.c");
         exit(1);
     }
     printf("%d\n", minute);
