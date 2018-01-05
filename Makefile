@@ -1,10 +1,10 @@
 
 
 build:
-	gcc printMinute.c -o printMinute.o
+	gcc print_minute.c -o print_minute.o
 
 clean:
-	rm printMinute.o
+	rm print_minute.o
 
 run: build
 	./bootstrap.sh

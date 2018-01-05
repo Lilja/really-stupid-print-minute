@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-const int minute = 17;
-const char * sourceFile = "printMinute.c";
+const int minute = 35;
+const char * sourceFile = "print_minute.c";
 const char * tempSourceFile = "temp";
 
 void read_file_line_by_line(int newMinute) {
@@ -46,8 +46,8 @@ int main(char* argv) {
     int newMinute = tm_struct->tm_min;
     if (minute != newMinute) {
         read_file_line_by_line(newMinute);
-        system("make build");
-        exit(1);
+        system("make -s build");
+        return 1;
     }
     printf("%d\n", minute);
     return 0;
