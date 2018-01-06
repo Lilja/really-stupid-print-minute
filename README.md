@@ -6,7 +6,7 @@ The program will detect if the current minute has changed since the hard-coded m
 
 If current minute is different from now, it will:
 * Open up itself and read, line by line
-    * Stop at line 6 and inject the new minute
+    * Stop at line 7 and inject the new minute
 * Open a new file called `temp`
 * Write all contents and the newly injected minute to `temp`
 * Rename(move) `temp` to `print_minute.c`
