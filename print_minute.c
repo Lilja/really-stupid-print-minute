@@ -5,7 +5,8 @@
 #include <unistd.h>
 #include <time.h>
 
-const int minute = 55;
+const int minute = 18;
+const unsigned tenSeconds = 10;
 const char * sourceFile = "print_minute.c";
 const char * tempSourceFile = "temp";
 const char * command = "make -s build";
@@ -46,12 +47,14 @@ int main(int argc, char * argv[]) {
     time_t foo = time(NULL);
     struct tm *tm_struct = localtime(&foo);
     int newMinute = tm_struct->tm_min;
+
     if (minute != newMinute) {
         read_file_line_by_line(newMinute);
         system(command);
-        execv(argv[0], argv);
     } else {
-        printf("%d\n", minute);
+        printf("%d\nSleeping for 10 seconds.\n", minute);
+        sleep(tenSeconds);
     }
-    return EXIT_SUCCESS;
+
+    return execv(argv[0], argv);
 }
