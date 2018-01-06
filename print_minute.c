@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <regex.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <time.h>
 
 const int minute = 55;
@@ -23,7 +24,7 @@ void read_file_line_by_line(int newMinute) {
 
     int index = 0;
     while ((read = getline(&line, &len, fp)) != -1) {
-        if (index == 6) {
+        if (index == 7) {
             char buf[5];
             sprintf(buf, "%d", newMinute);
             fputs("const int minute = ", writeFp);
@@ -48,8 +49,9 @@ int main(int argc, char * argv[]) {
     if (minute != newMinute) {
         read_file_line_by_line(newMinute);
         system(command);
-        return 1;
+        execv(argv[0], argv);
+    } else {
+        printf("%d\n", minute);
     }
-    printf("%d\n", minute);
-    return 0;
+    return EXIT_SUCCESS;
 }
