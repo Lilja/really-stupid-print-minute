@@ -11,12 +11,9 @@ If current minute is different from now, it will:
 * Write all contents and the newly injected minute to `temp`
 * Rename(move) `temp` to `print_minute.c`
 * Compile itself with `make`(`make -s build`)
-* Exit with return code `1` to tell bootstraper(`bootstrap.sh`) that the program has changed
-
-Then after that, the bootstraper script will re-run the program and the current minute will be displayed again.
+* Fork itself with `execv` and run the program, and exiting gracefully.
 
 # Run
 ```shell
 make run
 ```
-
