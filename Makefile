@@ -6,4 +6,4 @@ clean:
 	rm print_minute
 
 run: build
-	./bootstrap.sh
+	./print_minute

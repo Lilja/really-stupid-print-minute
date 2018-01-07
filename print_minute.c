@@ -5,10 +5,11 @@
 #include <unistd.h>
 #include <time.h>
 
-const int minute = 55;
-const char * sourceFile = "print_minute.c";
-const char * tempSourceFile = "temp";
-const char * command = "make -s build";
+static const int minute = 18;
+static const unsigned tenSeconds = 10;
+static const char * sourceFile = "print_minute.c";
+static const char * tempSourceFile = "temp";
+static const char * command = "make -s build";
 
 void read_file_line_by_line(int newMinute) {
     FILE * fp;
@@ -27,7 +28,7 @@ void read_file_line_by_line(int newMinute) {
         if (index == 7) {
             char buf[5];
             sprintf(buf, "%d", newMinute);
-            fputs("const int minute = ", writeFp);
+            fputs("static const int minute = ", writeFp);
             fputs(buf, writeFp);
             fputs(";\n", writeFp);
         } else {
@@ -46,12 +47,14 @@ int main(int argc, char * argv[]) {
     time_t foo = time(NULL);
     struct tm *tm_struct = localtime(&foo);
     int newMinute = tm_struct->tm_min;
+
     if (minute != newMinute) {
         read_file_line_by_line(newMinute);
         system(command);
-        execv(argv[0], argv);
     } else {
-        printf("%d\n", minute);
+        printf("%d\nSleeping for 10 seconds.\n", minute);
+        sleep(tenSeconds);
     }
-    return EXIT_SUCCESS;
+
+    return execv(argv[0], argv);
 }
