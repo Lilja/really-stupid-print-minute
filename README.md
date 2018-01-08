@@ -11,7 +11,7 @@ If current minute is different from now, it will:
 * Write all contents and the newly injected minute to `temp`
 * Rename(move) `temp` to `print_minute.c`
 * Compile itself with `make`(`make -s build`)
-* Fork itself with `execv` and run the program, and exiting gracefully.
+* Run recompiled version within the same process.
 
 # Run
 ```shell
